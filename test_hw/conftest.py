@@ -1,6 +1,9 @@
 import pytest
 from selene import browser, have
 
+from utils import attach
+
+
 @pytest.fixture(scope='function', autouse=True)
 def browser_setup():
     # browser.config.window_width = 1000
@@ -14,6 +17,10 @@ def browser_setup():
     # browser.all('[class="element-list accordion-collapse collapse show"]').element_by(have.exact_text('Practice Form')).click()
 
 
-    yield
+    yield browser
 
-    browser.quit()
+    attach.add_screenshot(browser)
+    attach.add_html(browser)
+    attach.add_logs(browser)
+
+    # browser.quit()
