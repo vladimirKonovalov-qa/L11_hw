@@ -9,12 +9,6 @@ from data.user import User
 class RegistrationPage:
     def open_started_page(self):
         browser.open('https://demoqa.com/automation-practice-form')
-        # browser.open('https://demoqa.com/')
-        # browser.all('[class="card mt-4 top-card"]').element_by(
-        #     have.exact_text('Alerts, Frame & Windows')).click()
-        # browser.all('[class="header-text"]').element_by(have.exact_text('Forms')).click()
-        # browser.all('[class="element-list accordion-collapse collapse show"]').element_by(
-        #     have.exact_text('Practice Form')).click()
 
     def register(self, user: User):
         browser.element('#firstName').should(be.blank).type(user.first_name)
