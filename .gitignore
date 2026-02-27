@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Allure Report files and directories
+allure-results/
+.allure/
+/build/
+/out/
