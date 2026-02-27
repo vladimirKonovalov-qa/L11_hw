@@ -6,7 +6,7 @@ from selene import browser
 
 from utils import attach
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope='function')
 def setup_browser(request):
     options = Options()
     selenoid_capabilities = {
