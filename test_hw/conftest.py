@@ -7,7 +7,7 @@ from selene import browser
 from utils import attach
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
     options = Options()
     selenoid_capabilities = {
@@ -20,7 +20,7 @@ def setup_browser(request):
     }
     options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
-        command_executor="https://selenoid.autotests.cloud/wd/hub",
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
         # command_executor=f"https://{selenoid_login}:{selenoid_pass}@{selenoid_url}/wd/hub",
         options=options
     )
@@ -33,4 +33,4 @@ def setup_browser(request):
     attach.add_html(browser)
     attach.add_logs(browser)
 
-    # browser.quit()
+    browser.quit()
