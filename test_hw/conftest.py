@@ -1,21 +1,31 @@
 import pytest
-from selene import browser, have
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selene import browser
 
 from utils import attach
 
 
-@pytest.fixture(scope='function', autouse=True)
-def browser_setup():
-    # browser.config.window_width = 1000
-    # browser.config.window_height = 1080
-    browser.config.driver_name = 'chrome'
-    # browser.config.wait_for_no_overlap_found_by_js = True
-    # browser.open('https://demoqa.com/')
-    # browser.all('[class="card mt-4 top-card"]').element_by(
-    #     have.exact_text('Alerts, Frame & Windows')).click()
-    # browser.all('[class="header-text"]').element_by(have.exact_text('Forms')).click()
-    # browser.all('[class="element-list accordion-collapse collapse show"]').element_by(have.exact_text('Practice Form')).click()
+@pytest.fixture(scope='function')
+def setup_browser(request):
+    options = Options()
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "100.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": True
+        }
+    }
+    options.capabilities.update(selenoid_capabilities)
+    driver = webdriver.Remote(
+        command_executor="https://selenoid.autotests.cloud/wd/hub",
+        # command_executor=f"https://{selenoid_login}:{selenoid_pass}@{selenoid_url}/wd/hub",
+        options=options
+    )
 
+    browser.config.driver = driver
 
     yield browser
 
