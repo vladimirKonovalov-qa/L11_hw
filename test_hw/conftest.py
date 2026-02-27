@@ -17,7 +17,7 @@ def browser_setup():
         "enableVideo": False
     })
 
-    browser.config.driver_remote_url = "http://selenoid:4444/wd/hub"
+    browser.config.driver_remote_url = "https://user1:1234@selenoid.autotests.cloud/wd/hub"
     browser.config.driver_options = options
 
     yield
