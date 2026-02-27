@@ -7,7 +7,7 @@ from selene import browser
 from utils import attach
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function")
 def browser_setup():
 
     options = Options()
@@ -24,12 +24,12 @@ def browser_setup():
 
     browser.quit()
 
-# @pytest.fixture(scope='function', autouse=True)
+# @pytest.fixture(scope='function')
 # def setup_browser(request):
 #     options = Options()
 #     selenoid_capabilities = {
 #         "browserName": "chrome",
-#         "browserVersion": "145.0.7632.117",
+#         "browserVersion": "",
 #         "selenoid:options": {
 #             "enableVNC": True,
 #             "enableVideo": False
