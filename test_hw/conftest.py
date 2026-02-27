@@ -8,15 +8,13 @@ from selene import browser
 from utils import attach
 
 
-@pytest.fixture(scope="session", autouse=True)
-def load_env():
-    load_dotenv()
-
-selenoid_login = os.getenv("SELENOID_LOGIN")
-selenoid_pass = os.getenv("SELENOID_PASS")
-
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
+    load_dotenv()
+
+    selenoid_login = os.getenv("SELENOID_LOGIN")
+    selenoid_pass = os.getenv("SELENOID_PASS")
+
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
